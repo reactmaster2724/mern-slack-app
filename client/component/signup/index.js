@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { browserHistory } from 'react-router';
 import * as userAction from '../../actions/users';
 
+
 function formValidation(field, value1, value2) {
   switch (field) {
     case 'userName':
@@ -88,21 +89,29 @@ class SignUp extends Component {
                   <strong>Error!</strong> {error}
                 </div>
               ) : null}
+
               <div className="form-group field">
-                <span className="glyphicon air-icon-user"></span>
-                <input type="email" name="email" placeholder="Your email" className="form-control" onChange={this._onChangeMailHander.bind(this)} value={email} />
+                <input type="email" name="email" placeholder="Your email" className="form-control field-size" onChange={this._onChangeMailHander.bind(this)} value={email} />
+
               </div>
               <div className="form-group field">
-                <span className="glyphicon air-icon-user"></span>
                 <input type="email" name="text" placeholder="User Name" className="form-control" onChange={this._onChangeUserNameHander.bind(this)} value={userName} />
               </div>
               <div className="form-group field">
-                <span className="glyphicon air-icon-password"></span>
                 <input type="password" name="pass" placeholder="Your password" className="form-control" onChange={this._onChangePassHander.bind(this)} value={pass} />
               </div>
+              
+              <div class="form-group">
+        <label class="form-label col-sm-2">Password</label>
+        <div class="col-sm-4">
+            <input type="text" placeholder="Password ..." class="form-control" id="example-getting-started-input" />
+        </div>
+        <div class="col-sm-6" id="example-getting-started-text" style="font-weight:bold;padding:6px 12px;">
+ 
+        </div>
+    </div>
 
               <div className="form-group field">
-                <span className="glyphicon air-icon-password"></span>
                 <input type="password" name="confirm" placeholder="Confirm pasword" className="form-control" onChange={this._onConfirmPassHander.bind(this)} value={confirmPass} />
               </div>
 
