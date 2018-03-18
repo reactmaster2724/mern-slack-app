@@ -92,9 +92,9 @@ class SignUp extends Component {
 
               
               <div className="form-group field">
-                  <span className="glyphicon air-icon-user" style={{ top: "45%" }}></span>
+                  <span className="glyphicon glyphicon-envelope" style={{ top: "45%" }}></span>
                   <input type="email" name="email" placeholder="Your email" className="form-control" style={{width: "75%", float: "left"}} onChange={this._onChangeMailHander.bind(this)} value={email} />
-                  <button style={{ marginTop:"10px"}} className="btn btn-info">check</button>
+                  <button style={{ marginTop:"10px"}} className="btn btn-info">Check</button>
               </div>
               <div className="form-group field">
                 <span className="glyphicon air-icon-user" style={{ top: "30%" }}></span>
