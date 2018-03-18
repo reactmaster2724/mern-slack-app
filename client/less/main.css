@@ -1,0 +1,41 @@
+div{
+  text-align: center;
+}
+.main{
+  margin-top: 30px;
+}
+
+.login-form{
+  margin-top: 10%;
+}
+.login-form .panel{
+  min-height: 260px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px;
+}
+.login-form .panel-heading{
+  max-height: 100px;
+}
+.login-form .panel-heading h3{
+  margin: 0px;
+}
+.login-form .form-group{
+  position: relative;
+}
+.login-form .form-group span{
+  position: absolute;
+  top: 23%;
+  font-size: 18px;
+  color: #adadad;
+  left: 1%;
+}
+.login-form .panel-body input{
+  margin: 10px 3px;
+  padding: 0px 15px;
+  padding-left: 10%;
+}
+.login-form .button-area{
+  margin-top: 20px;
+}
+.login-form .button-area a{
+  min-width: 123px;
+}
