@@ -58,4 +58,13 @@ module.exports = (app, db) => {
       });
     });
   });
+//
+  app.post('/checkusername',(req,res)=>{
+    if(!req.body.userName) return res.send({error:"Please fill out user name field!"});
+    userModel.getUserByUserName(req.body.userName)
+    .then(user=>{
+      if(user) return res.send({error:"This user name already used!"});
+      else return res.send({message:"Avalie user name."});
+    })
+  });
 }

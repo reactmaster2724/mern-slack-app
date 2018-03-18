@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { browserHistory } from 'react-router';
 import * as userAction from '../../actions/users';
+import axios from 'axios'
 
 
 function formValidation(field, value1, value2) {
@@ -35,7 +36,8 @@ class SignUp extends Component {
       pass: null,
       confirmPass: null,
       userName: null,
-      error: null
+      error: null,
+      message: null
     }
   }
 
@@ -57,6 +59,15 @@ class SignUp extends Component {
   _onConfirmPassHander(e) { this.setState({ confirmPass: e.target.value }); }
 
   _onChangeUserNameHander(e) { this.setState({ userName: e.target.value }); }
+//
+  checkUser() {
+    const { userName } = this.state;
+    if (!userName) return;
+    axios.post('http://localhost:3030/checkusername', { userName }).then((response) => {
+      if (response.data.error) this.setState({ error: response.data.error, message: null });
+      else this.setState({ message: response.data.message, error: null });
+    });
+  }
 
   loginHandler() { browserHistory.push('/login') }
 
@@ -75,7 +86,7 @@ class SignUp extends Component {
   }
 
   render() {
-    const { email, pass, error, confirmPass, userName } = this.state;
+    const { email, pass, error, confirmPass, userName, message } = this.state;
     return (
       <div className="container main">
         <div className="col-md-offset-4 col-md-4 login-form">
@@ -89,17 +100,21 @@ class SignUp extends Component {
                   <strong>Error!</strong> {error}
                 </div>
               ) : null}
+              {message ? (
+                <div className="alert alert-danger">
+                  {message}
+                </div>
+              ) : null}
 
-              
               <div className="form-group field">
-                  <span className="glyphicon glyphicon-envelope" style={{ top: "40%" }}></span>
-                  <input type="email" name="email" placeholder="Your email" className="form-control" style={{width: "75%", float: "left"}} onChange={this._onChangeMailHander.bind(this)} value={email} />
-                  <button style={{ marginTop:"10px"}} className="btn btn-info">Check</button>
+                <span className="glyphicon glyphicon-envelope" style={{ top: "40%" }}></span>
+                <input type="email" name="email" placeholder="Your email" className="form-control" style={{ width: "75%", float: "left" }} onChange={this._onChangeMailHander.bind(this)} value={email} />
+                <button style={{ marginTop: "10px" }} className="btn btn-info">Check</button>
               </div>
               <div className="form-group field">
                 <span className="glyphicon air-icon-user" style={{ top: "45%" }}></span>
-                <input type="email" name="text" placeholder="User Name" className="form-control" style={{width: "75%", float: "left"}} onChange={this._onChangeUserNameHander.bind(this)} value={userName} />
-                <button style={{ marginTop:"10px"}} className="btn btn-info">Check</button>
+                <input type="text" name="text" placeholder="User Name" className="form-control" style={{ width: "75%", float: "left" }} onChange={this._onChangeUserNameHander.bind(this)} value={userName} />
+                <button style={{ marginTop: "10px" }} onClick={this.checkUser.bind(this)} className="btn btn-info">Check</button>
               </div>
               <div className="form-group field">
                 <span className="glyphicon air-icon-password"></span>
