@@ -57,7 +57,7 @@ class SignUp extends Component {
   _onChangePassHander(e) { this.setState({ pass: e.target.value }); }
 
   _onConfirmPassHander(e) { this.setState({ confirmPass: e.target.value }); }
-
+//
   _onChangeUserNameHander(e) { this.setState({ userName: e.target.value }); }
 //
   checkUser() {
