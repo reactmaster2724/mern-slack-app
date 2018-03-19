@@ -87,7 +87,7 @@ class Login extends Component {
                 </div>
               ) : null}
               <div className="form-group field">
-                <span className="glyphicon air-icon-user"></span>
+                <span className="glyphicon glyphicon-envelope"></span>
                 <input type="email" name="email" placeholder="Your email" className="form-control" onChange={this._onChangeMailHander.bind(this)} value={email} />
               </div>
               <div className="form-group field">

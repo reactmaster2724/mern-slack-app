@@ -57,10 +57,10 @@ class SignUp extends Component {
   _onChangePassHander(e) { this.setState({ pass: e.target.value }); }
 
   _onConfirmPassHander(e) { this.setState({ confirmPass: e.target.value }); }
-//
+  //
   _onChangeUserNameHander(e) { this.setState({ userName: e.target.value }); }
-//
-  checkUser() {
+  //
+  _onCheckUserName() {
     const { userName } = this.state;
     if (!userName) return;
     axios.post('http://localhost:3030/checkusername', { userName }).then((response) => {
@@ -68,6 +68,16 @@ class SignUp extends Component {
       else this.setState({ message: response.data.message, error: null });
     });
   }
+  _onCheckEmail() {
+
+    const { email } = this.state;
+    if (!email) return;
+    axios.post('http://localhost:3030/checkemail', { email }).then((response) => {
+      if (response.data.error) this.setState({ error: response.data.error, message: null });
+      else this.setState({ message: response.data.message, error: null });
+    });
+  }
+
 
   loginHandler() { browserHistory.push('/login') }
 
@@ -109,12 +119,12 @@ class SignUp extends Component {
               <div className="form-group field">
                 <span className="glyphicon glyphicon-envelope" style={{ top: "40%" }}></span>
                 <input type="email" name="email" placeholder="Your email" className="form-control" style={{ width: "75%", float: "left" }} onChange={this._onChangeMailHander.bind(this)} value={email} />
-                <button style={{ marginTop: "10px" }} className="btn btn-info">Check</button>
+                <a style={{ marginTop: "10px" }} onClick={this._onCheckEmail.bind(this)} className="btn btn-info">Check</a>
               </div>
               <div className="form-group field">
                 <span className="glyphicon air-icon-user" style={{ top: "45%" }}></span>
                 <input type="text" name="text" placeholder="User Name" className="form-control" style={{ width: "75%", float: "left" }} onChange={this._onChangeUserNameHander.bind(this)} value={userName} />
-                <button style={{ marginTop: "10px" }} onClick={this.checkUser.bind(this)} className="btn btn-info">Check</button>
+                <button style={{ marginTop: "10px" }} onClick={this._onCheckUserName.bind(this)} className="btn btn-info">Check</button>
               </div>
               <div className="form-group field">
                 <span className="glyphicon air-icon-password"></span>

@@ -58,13 +58,24 @@ module.exports = (app, db) => {
       });
     });
   });
-//
+
   app.post('/checkusername',(req,res)=>{
-    if(!req.body.userName) return res.send({error:"Please fill out user name field!"});
+    if(!req.body.userName) 
+    return res.send({error:"Please fill user name field!"});
     userModel.getUserByUserName(req.body.userName)
     .then(user=>{
       if(user) return res.send({error:"This user name already used!"});
-      else return res.send({message:"Avalie user name."});
+      else return res.send({message:"Available username"})
+    })
+  });
+
+  app.post('/checkemail',(req,res)=>{
+    if(!req.body.email) 
+    return res.send({error:"Please fill Email field"});
+    userModel.getUserByEmail(req.body.email)
+    .then(user=>{
+      if(user) return res.send({error:"this email address already used!"});
+      else return res.send({message:"Available emil"})
     })
   });
 }
